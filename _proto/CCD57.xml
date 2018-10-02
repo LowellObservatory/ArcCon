@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<camera-configuration>
+  <number-rows>528</number-rows>
+  <number-columns>542</number-columns>
+  <amplifier>L</amplifier>
+  <amplifier>R</amplifier>
+  <observation-configuration>
+    <name>Default</name>
+    <analysis-box>
+      <command-mode length="2">
+        <string>box</string>
+        <string>phot</string>
+      </command-mode>
+      <commandChoice>0</commandChoice>
+      <x-center>0</x-center>
+      <y-center>0</y-center>
+      <x-size>50</x-size>
+      <y-size>50</y-size>
+      <size>50</size>
+      <radius>7</radius>
+      <sky-inner>10</sky-inner>
+      <sky-outer>14</sky-outer>
+      <gain>1.0</gain>
+      <track>false</track>
+      <center-reference>false</center-reference>
+    </analysis-box>
+    <camera-control>
+      <test>false</test>
+      <mode>single</mode>
+      <command>start</command>
+      <amplifier>L</amplifier>
+      <subframe-number>0</subframe-number>
+      <rows-per-bin>1</rows-per-bin>
+      <columns-per-bin>1</columns-per-bin>
+      <number-dots-rows-frames></number-dots-rows-frames>
+      <dot-size></dot-size>
+      <over-scan>0</over-scan>
+      <trigger-type>soft</trigger-type>
+      <exposure-time>1.1</exposure-time>
+      <integration-interval></integration-interval>
+      <number-exposures>1</number-exposures>
+      <frame-type>object</frame-type>
+      <subMode></subMode>
+      <object-title></object-title>
+      <fits-comment1></fits-comment1>
+      <fits-comment2></fits-comment2>
+      <camera-type>CCD57-Test</camera-type>
+    </camera-control>
+  </observation-configuration>
+</camera-configuration>
