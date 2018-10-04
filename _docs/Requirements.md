@@ -119,7 +119,7 @@ IV. Rectangular binning
 
 Appendix
 
-'''	DC	'IDL',IDL  		; Put CCD in IDLE mode    
+```	DC	'IDL',IDL  		; Put CCD in IDLE mode    
 ; Remove for gen-iii since it is in timboot as per June 30 #9                      ??? Question for Ted
 ;	DC	'STP',STP  		; Exit IDLE mode
 	DC	'SVR',SETVRDS		; set VRD2,3
@@ -127,9 +127,9 @@ Appendix
 	DC	'RDC',RDCCD 		; Begin CCD readout    
 	DC	'CLR',CLEAR  		; Fast clear the CCD   
 	DC	'SGN',ST_GAIN  		; Set video processor gain     
-	DC  'SMX',SET_MUX       ; Set clock driver MUX output           Is MUX broken?
+	DC  'SMX',SET_MUX       ; Set clock driver MUX output           Is MUX broken?```
 
-	DC	'ABR',ABR_RDC		; Abort readout
+	```DC	'ABR',ABR_RDC		; Abort readout
 	DC	'CRD',CONT_RD		; Continue reading out
 	DC	'CSW',CLR_SWS		; Clear analog switches to lower power
 	DC	'SOS',SEL_OS		; Select output source
@@ -147,15 +147,15 @@ Appendix
 	DC	'STG',SET_TRIGGER	;  Set Trigger Mode on or off
 	DC	'SIP',SET_IMAGE_PARAM
 	DC	'SRC',SET_ROWS_COLUMNS ; Set NSR, NPR, and binning
-	DC	'INF',GET_INFO		; info command for versioning and more
+	DC	'INF',GET_INFO		; info command for versioning and more```
 
 
-COM_TBL	DC      'TDL',TDL		; Test Data Link
+```COM_TBL	DC      'TDL',TDL		; Test Data Link
 	DC      'RDM',RDMEM		; Read from DSP or EEPROM memory
 	DC      'WRM',WRMEM		; Write to DSP memory        
 	DC	'LDA',LDAPPL		; Load application from EEPROM to DSP
 	DC	'STP',STOP_IDLE_CLOCKING
 	DC	'DON',START		; Nothing special
-	DC      'ERR',START		; Nothing special
-'''
+	DC      'ERR',START		; Nothing special```
+
 
