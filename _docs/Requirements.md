@@ -119,7 +119,7 @@ IV. Rectangular binning
 
 Appendix
 
-	DC	'IDL',IDL  		; Put CCD in IDLE mode    
+'''	DC	'IDL',IDL  		; Put CCD in IDLE mode    
 ; Remove for gen-iii since it is in timboot as per June 30 #9                      ??? Question for Ted
 ;	DC	'STP',STP  		; Exit IDLE mode
 	DC	'SVR',SETVRDS		; set VRD2,3
@@ -157,5 +157,5 @@ COM_TBL	DC      'TDL',TDL		; Test Data Link
 	DC	'STP',STOP_IDLE_CLOCKING
 	DC	'DON',START		; Nothing special
 	DC      'ERR',START		; Nothing special
-
+'''
 
