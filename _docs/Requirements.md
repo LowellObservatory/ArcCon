@@ -60,35 +60,40 @@ ArcLib must be able to perform the following tasks:
    - Report shutter status (Is shutter opened or closed? Is there hardware feedback to know this for sure?)
 	
 ```diff  
-+     Ted: No there isn’t.  It’s even worse; different shutter controllers use different
-+     logic levels for open and closed states.
++     Ted: No there isn’t.  It’s even worse; different shutter controllers use
++     different logic levels for open and closed states.
    
-+     We need to be able to specify whether a given image is an object frame with light on it, a dark frame
-+     with such-and-such exposure time, or a bias frame with the smallest possible exposure time and no light.
-+     At this level we the idea of a flat frame doesn’t make sense – it is just a normal frame where the shutter
-+     opens and you expose to light.  The fact that it’s a flat is a detail that needs to be dealt with at a
-+     higher software level.
++     We need to be able to specify whether a given image is an object frame with
++     light on it, a dark frame with such-and-such exposure time, or a bias frame
++     with the smallest possible exposure time and no light.  At this level we the
++     idea of a flat frame doesn’t make sense – it is just a normal frame where the shutter
++     opens and you expose to light.  The fact that it’s a flat is a detail that needs
++     to be dealt with at a higher software level.
   
--     Dyer: I think the camera shutter is controlled by the DSP code when a SEX command is sent so we may not have
--     to have a requirement for this.  But, talk to Ted about it. Can we do independent shutter control?
+-     Dyer: I think the camera shutter is controlled by the DSP code when a SEX command
+-     is sent so we may not have to have a requirement for this.  But, talk to Ted about
+-     it. Can we do independent shutter control?
 
 -     Len: Also, how to prevent shutter from opening in the case of biases?
 
-+     Ted: This is done by setting the SHUT bit in the STATUS word in the DSP code.  I bet this is
-+     done with RDMEM/WRMEM commands at the application level prior to issuing the SEX command.  Is this in pcicamtest?
++     Ted: This is done by setting the SHUT bit in the STATUS word in the DSP code.
++     I bet this is done with RDMEM/WRMEM commands at the application level prior to
++     issuing the SEX command.  Is this in pcicamtest?
 
 -     Len: Also, note there are OSH, CSH (found in the table
--     in the appendix) command for open/close shutter. It is probably a command independent of the 'SEX' command.
--     We have not been able to try this since we have not had a working shutter hooked up.
+-     in the appendix) command for open/close shutter. It is probably a command independent
+-     of the 'SEX' command. We have not been able to try this since we have not had a working
+-     shutter hooked up.
 
-+     Ted: You’re both right, there are separate open and close shutter commands and SEX operates the
-+     shutter automatically too.  
++     Ted: You’re both right, there are separate open and close shutter commands and SEX
++     operates the shutter automatically too.  
 
-+     Specify data acquisition mode.  Support single frames, basic occultation, and strip scanning.  There will be
-+     sub-requirements to define the exposure time or interval for basic occultation (per frame) and strip scans (per row)
-+     and the number of frames or rows in these time-resolved readout modes.  Strip scanning is useful sometimes for
-+     engineering purposes and basic occultation is essential for the GWAVES guiders.  Referring to the appendix the
-+     command for setting the mode and its parameters is SIP.
++     Specify data acquisition mode.  Support single frames, basic occultation, and strip
++     scanning.  There will be sub-requirements to define the exposure time or interval for
++     basic occultation (per frame) and strip scans (per row) and the number of frames or
++     rows in these time-resolved readout modes.  Strip scanning is useful sometimes for
++     engineering purposes and basic occultation is essential for the GWAVES guiders.  Referring
++     to the appendix the command for setting the mode and its parameters is SIP.
 ```
 
 7. Exposures
