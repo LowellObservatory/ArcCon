@@ -59,15 +59,15 @@ ArcLib must be able to perform the following tasks:
    - Control camera shutter
    - Report shutter status (Is shutter opened or closed? Is there hardware feedback to know this for sure?)
 	
-```  
-     Note: Ted: No there isn’t.  It’s even worse; different shutter controllers use different
-     logic levels for open and closed states.
+```diff  
++     Note: Ted: No there isn’t.  It’s even worse; different shutter controllers use different
++     logic levels for open and closed states.
      
-     We need to be able to specify whether a given image is an object frame with light on it, a dark frame
-     with such-and-such exposure time, or a bias frame with the smallest possible exposure time and no light.
-     At this level we the idea of a flat frame doesn’t make sense – it is just a normal frame where the shutter
-     opens and you expose to light.  The fact that it’s a flat is a detail that needs to be dealt with at a
-     higher software level.
++     We need to be able to specify whether a given image is an object frame with light on it, a dark frame
++     with such-and-such exposure time, or a bias frame with the smallest possible exposure time and no light.
++     At this level we the idea of a flat frame doesn’t make sense – it is just a normal frame where the shutter
++     opens and you expose to light.  The fact that it’s a flat is a detail that needs to be dealt with at a
++     higher software level.
 ```     
 
 
