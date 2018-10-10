@@ -58,9 +58,8 @@ ArcLib must be able to perform the following tasks:
 6. Camera Shutter
    - Control camera shutter
    - Report shutter status (Is shutter opened or closed? Is there hardware feedback to know this for sure?)
-   
-   <font color="green">
 	
+'''
      Note: Ted: No there isn’t.  It’s even worse; different shutter controllers use different
      logic levels for open and closed states.
 	
@@ -69,8 +68,8 @@ ArcLib must be able to perform the following tasks:
      At this level we the idea of a flat frame doesn’t make sense – it is just a normal frame where the shutter
      opens and you expose to light.  The fact that it’s a flat is a detail that needs to be dealt with at a
      higher software level.
+'''
      
-   </font>
 
 
 I think the camera shutter is controlled by the DSP code when a SEX command is sent so we may not have
