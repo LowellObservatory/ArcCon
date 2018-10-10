@@ -62,28 +62,28 @@ ArcLib must be able to perform the following tasks:
 ```diff  
 +     Ted: No there isn’t.  It’s even worse; different shutter controllers use different
 +     logic levels for open and closed states.
-+    
+   
 +     We need to be able to specify whether a given image is an object frame with light on it, a dark frame
 +     with such-and-such exposure time, or a bias frame with the smallest possible exposure time and no light.
 +     At this level we the idea of a flat frame doesn’t make sense – it is just a normal frame where the shutter
 +     opens and you expose to light.  The fact that it’s a flat is a detail that needs to be dealt with at a
 +     higher software level.
-+   
+  
 -     Dyer: I think the camera shutter is controlled by the DSP code when a SEX command is sent so we may not have
 -     to have a requirement for this.  But, talk to Ted about it. Can we do independent shutter control?
--
+
 -     Len: Also, how to prevent shutter from opening in the case of biases?
--
+
 +     Ted: This is done by setting the SHUT bit in the STATUS word in the DSP code.  I bet this is
 +     done with RDMEM/WRMEM commands at the application level prior to issuing the SEX command.  Is this in pcicamtest?
-+
+
 -     Len: Also, note there are OSH, CSH (found in the table
 -     in the appendix) command for open/close shutter. It is probably a command independent of the 'SEX' command.
 -     We have not been able to try this since we have not had a working shutter hooked up.
--
+
 +     Ted: You’re both right, there are separate open and close shutter commands and SEX operates the
 +     shutter automatically too.  
-+
+
 +     Specify data acquisition mode.  Support single frames, basic occultation, and strip scanning.  There will be
 +     sub-requirements to define the exposure time or interval for basic occultation (per frame) and strip scans (per row)
 +     and the number of frames or rows in these time-resolved readout modes.  Strip scanning is useful sometimes for
@@ -118,6 +118,7 @@ ArcLib must be able to perform the following tasks:
 ```diff
 +  I don’t see how to do this.  If we REALLY care about exact times we should hardware trigger, but I think we
 +  can do a lot better without going to that extreme.
+```
 
 9. Image buffering
    - Store raw image data in a memory buffer to be made available to the software layer above ArcCam.
@@ -151,6 +152,7 @@ ArcLib must be able to perform the following tasks:
 
 +    Ted: I need to understand all the facets of this.  Many things need to be aborted and configurations
 +    restored to make this work correctly.
+```
 
 2. Coadd - For use with infrared instruments
 
@@ -162,11 +164,13 @@ ArcLib must be able to perform the following tasks:
 +  Ted: There are different ways to deal with this too.  The complicated but fast (maybe) way to do it is to
 +  co-add in the PCI card.  The easier but slower (maybe) way is to co-add in the computer after reading out
 +  the images.  The really easy way is to take lots of images and co-add them during the data analysis phase.
+```
 
 3. Fowler Sampling – For use with infrared instruments
 
 ```diff
 +  Ted: Doing this in PCI card memory or computer memory are both approaches to consider.
+```
 
 
 
