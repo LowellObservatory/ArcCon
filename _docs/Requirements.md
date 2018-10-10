@@ -102,27 +102,28 @@ ArcLib must be able to perform the following tasks:
    - Report readout progress.
 
 ```diff
--    Dyer: Ted said something, sometime, when we were working with the ARC57 camera that checking readout progress
--    could be problematic.  I forget what the problem was.
+-    Dyer: Ted said something, sometime, when we were working with the ARC57 camera that checking
+-    readout progress could be problematic.  I forget what the problem was.
 
 -    Len: I wonder if this point was confused with something
--    else since I was able to wait for the last pixel during readout. Grabbing the exposure progress should be
--    a simple matter of dividing the total number of pixels by 100, or something like that, to provide a readout
--    progress as a %. But do we really want to do this at the ArcLib level because of the potential system resource
--    overhead it will involve? I believe LOUI currently does a best guess at exposure progress and that guess is
--    close enough. I know the old LOIS used to provide readout progress based on the total number of pixels. Maybe
--    the end of each row was searched for during readout?
+-    else since I was able to wait for the last pixel during readout. Grabbing the exposure progress
+-    should be a simple matter of dividing the total number of pixels by 100, or something like that
+-    to provide a readout progress as a %. But do we really want to do this at the ArcLib level
+-    because of the potential system resource overhead it will involve? I believe LOUI currently does
+-    a best guess at exposure progress and that guess is close enough. I know the old LOIS used to
+-    provide readout progress based on the total number of pixels. Maybe the end of each row was
+-    searched for during readout?
 
 +    Ted:  I don’t know how LOIS did the progress report but it doesn’t take much in the way of system
-+    resources and I don’t remember it being problematic.  I’m sure we can come up with a reasonable approach for
-+    this.  For now, just leave it as item c) in your requirements list.
++    resources and I don’t remember it being problematic.  I’m sure we can come up with a reasonable
++    approach for this.  For now, just leave it as item c) in your requirements list.
 ```
 
 8. Provide accurate exposure start times.  (Len: Exposure start times based on shutter voltage change?)
 
 ```diff
-+  Ted: I don’t see how to do this.  If we REALLY care about exact times we should hardware trigger, but I think we
-+  can do a lot better without going to that extreme.
++  Ted: I don’t see how to do this.  If we REALLY care about exact times we should hardware trigger,
++  but I think we can do a lot better without going to that extreme.
 ```
 
 9. Image buffering
@@ -131,15 +132,16 @@ ArcLib must be able to perform the following tasks:
    
 ```diff
 +    Ted: I think we need to explicitly include a section on engineering functions.  Referring to the
-+    table in the appendix, these would be SMX, RDM, WRM, and SYN (the synthetic image deal I mentioned in my
-+    email of 8/10/18.  Direct access to RDM and WRM is important for debugging but they are also needed for
-+    certain functions that will show up in the requirements (e.g. setting the necessary flag to get a bias or
-+    dark frame).
++    table in the appendix, these would be SMX, RDM, WRM, and SYN (the synthetic image deal I
++    mentioned in my email of 8/10/18.  Direct access to RDM and WRM is important for debugging
++    but they are also needed for certain functions that will show up in the requirements (e.g.
++    setting the necessary flag to get a bias or dark frame).
 
-+    I think we’re going to need explicit control of clearing the CCD prior to the exposure in order to have
-+    accurate exposure start times without hardware triggering.  (See CLR in the table in the appendix.)  Right
-+    now SEX includes a CCD clear before opening the shutter.  I think there is nanny code in LOIS that causes
-+    additional delay that impacts the start times in the LMI headers.
++    I think we’re going to need explicit control of clearing the CCD prior to the exposure in
++    order to have accurate exposure start times without hardware triggering.  (See CLR in the
++    table in the appendix.)  Right now SEX includes a CCD clear before opening the shutter.
++    I think there is nanny code in LOIS that causes additional delay that impacts the start
++    times in the LMI headers.
 ```
 
 ### Future Enhancements
@@ -150,25 +152,27 @@ ArcLib must be able to perform the following tasks:
    - Abort and save
 
 ```diff
--    Dyer: We need to understand this better than we do now and that requires sitting down with Ted to talk about it.
+-    Dyer: We need to understand this better than we do now and that requires sitting down
+-    with Ted to talk about it.
 
--    Len: We should look at someone's code where this is working. Perhaps the C++ code from the ASU group? Or
--    maybe using 'Owl'? First see if it works in either of those.
+-    Len: We should look at someone's code where this is working. Perhaps the C++ code from
+-    the ASU group? Or maybe using 'Owl'? First see if it works in either of those.
 
-+    Ted: I need to understand all the facets of this.  Many things need to be aborted and configurations
-+    restored to make this work correctly.
++    Ted: I need to understand all the facets of this.  Many things need to be aborted and
++    configurations restored to make this work correctly.
 ```
 
 2. Coadd - For use with infrared instruments
 
 ```diff
--  Dyer: The Coadd possibilities will also have to have parameters set, for example, how many images can we coadd
--  without causing problems with the size of the values stored in memory?  Can the values be saved with more
--  bytes per pixel to handle large coadd numbers?
+-  Dyer: The Coadd possibilities will also have to have parameters set, for example, how
+-  many images can we coadd without causing problems with the size of the values stored in memory?
+-  Can the values be saved with more bytes per pixel to handle large coadd numbers?
 
-+  Ted: There are different ways to deal with this too.  The complicated but fast (maybe) way to do it is to
-+  co-add in the PCI card.  The easier but slower (maybe) way is to co-add in the computer after reading out
-+  the images.  The really easy way is to take lots of images and co-add them during the data analysis phase.
++  Ted: There are different ways to deal with this too.  The complicated but fast (maybe) way
++  to do it is to co-add in the PCI card.  The easier but slower (maybe) way is to co-add in
++  the computer after reading out the images.  The really easy way is to take lots of images and
++  co-add them during the data analysis phase.
 ```
 
 3. Fowler Sampling – For use with infrared instruments
