@@ -1,15 +1,11 @@
 
-ArcCam Library Requirements Draft
-
-28 September, 2018
-
-v 0.03
+## ArcCon Library Software Requirements Specification
 
 
-Introduction
+### Introduction
 
-Description
-The ArcCam library will make it possible to operate an ARC (Astronomical Research Camera, Inc) camera
+#### Description   
+The ArcCon library will make it possible to operate an ARC (Astronomical Research Camera, Inc) camera
 controller of which many are in use at Lowell Observatory.  The desire to have a very narrowly focused
 set of tools for the purpose of controlling ARC camera controllers is born out of the experience with the
 current software implementation for commanding the ARC controllers, LOIS, which has grown to become much
