@@ -97,10 +97,10 @@ ArcLib must be able to perform the following tasks:
    - Report readout progress.
 
 ```diff
--    Note: Dyer: Ted said something, sometime, when we were working with the ARC57 camera that checking readout progress
+-    Dyer: Ted said something, sometime, when we were working with the ARC57 camera that checking readout progress
 -    could be problematic.  I forget what the problem was.
 
--    Note: Len: I wonder if this point was confused with something
+-    Len: I wonder if this point was confused with something
 -    else since I was able to wait for the last pixel during readout. Grabbing the exposure progress should be
 -    a simple matter of dividing the total number of pixels by 100, or something like that, to provide a readout
 -    progress as a %. But do we really want to do this at the ArcLib level because of the potential system resource
@@ -108,7 +108,7 @@ ArcLib must be able to perform the following tasks:
 -    close enough. I know the old LOIS used to provide readout progress based on the total number of pixels. Maybe
 -    the end of each row was searched for during readout?
 
-+    Note: Ted:  I don’t know how LOIS did the progress report but it doesn’t take much in the way of system
++    Ted:  I don’t know how LOIS did the progress report but it doesn’t take much in the way of system
 +    resources and I don’t remember it being problematic.  I’m sure we can come up with a reasonable approach for
 +    this.  For now, just leave it as item c) in your requirements list.
 ```
@@ -116,7 +116,7 @@ ArcLib must be able to perform the following tasks:
 8. Provide accurate exposure start times.  (Len: Exposure start times based on shutter voltage change?)
 
 ```diff
-+  I don’t see how to do this.  If we REALLY care about exact times we should hardware trigger, but I think we
++  Ted: I don’t see how to do this.  If we REALLY care about exact times we should hardware trigger, but I think we
 +  can do a lot better without going to that extreme.
 ```
 
@@ -125,7 +125,7 @@ ArcLib must be able to perform the following tasks:
    - Report status of image buffer during readout.
    
 ```diff
-+    Note: Ted: I think we need to explicitly include a section on engineering functions.  Referring to the
++    Ted: I think we need to explicitly include a section on engineering functions.  Referring to the
 +    table in the appendix, these would be SMX, RDM, WRM, and SYN (the synthetic image deal I mentioned in my
 +    email of 8/10/18.  Direct access to RDM and WRM is important for debugging but they are also needed for
 +    certain functions that will show up in the requirements (e.g. setting the necessary flag to get a bias or
