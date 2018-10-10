@@ -59,22 +59,24 @@ ArcLib must be able to perform the following tasks:
    - Control camera shutter
    - Report shutter status (Is shutter opened or closed? Is there hardware feedback to know this for sure?)
 	
-'''
+```  
      Note: Ted: No there isn’t.  It’s even worse; different shutter controllers use different
      logic levels for open and closed states.
-	
+     
      We need to be able to specify whether a given image is an object frame with light on it, a dark frame
      with such-and-such exposure time, or a bias frame with the smallest possible exposure time and no light.
      At this level we the idea of a flat frame doesn’t make sense – it is just a normal frame where the shutter
      opens and you expose to light.  The fact that it’s a flat is a detail that needs to be dealt with at a
      higher software level.
-'''
-     
+```     
 
 
-I think the camera shutter is controlled by the DSP code when a SEX command is sent so we may not have
-to have a requirement for this.  But, talk to Ted about it.  Can we do independent shutter control? Also,
-how to prevent shutter from opening in the case of biases? Also, note there are OSH, CSH (found in the table
+Dyer: I think the camera shutter is controlled by the DSP code when a SEX command is sent so we may not have
+to have a requirement for this.  But, talk to Ted about it. Can we do independent shutter control?
+
+Len: Also, how to prevent shutter from opening in the case of biases?
+
+Ted: Also, note there are OSH, CSH (found in the table
 in the appendix) command for open/close shutter. It is probably a command independent of the 'SEX' command.
 We have not been able to try this since we have not had a working shutter hooked up.
 
