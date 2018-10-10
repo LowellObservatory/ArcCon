@@ -1,45 +1,73 @@
 
-## ArcCon Library Software Requirements Specification
+## ArcLib Software Requirements Specification
 
 
 ### Introduction
 
-#### Description   
-The ArcCon library will make it possible to operate an ARC (Astronomical Research Camera, Inc) camera
-controller of which many are in use at Lowell Observatory.  The desire to have a very narrowly focused
-set of tools for the purpose of controlling ARC camera controllers is born out of the experience with the
+#### Purpose   
+ArcLib will present an Application Programming Interface (API) to allow parent applications to operate
+Astronomical Research Cameras, Inc (ARC) camera controllers.
+
+#### Product Scope
+This document will describe the key requirements necessary to operate an ARC controller and will also offer
+suggested capabilities that have not previously been implemented. A table of low level Digital Signal
+Processor (DSP) commands will be included in the appendix to be used as a guideline for command requirements.
+
+#### Intended Audience  
+ArcLib will be used by system applications, in particular the Lowell Observatory Camera Utility System (LOCUS).
+As such the intended audience will be application developers interested in controlling CCDs using ARC controllers.
+
+#### History  
+The desire to have a very narrowly focused set of tools for this purpose is born out of the experience with the
 current software implementation for commanding the ARC controllers, LOIS, which has grown to become much
-more than a simple command interface for these controllers.  The purpose of ArcCam is to perform no other
+more than a simple command interface for these controllers.  The purpose of ArcLib is to perform no other
 tasks aside from commanding the controllers.
 
-Scope
-This document will describe the key requirements necessary to operate an ARC controller and will also offer
-suggested capabilities that have not previously been implemented. We will not discuss implementation details
-such as the language used for this new library. A table of low level “DSP” commands will be included in the
-appendix to be used as a guideline of command requirements. 
+#### References  
+[The Astronomical Research Cameras Website](http://www.astro-cam.com/index.php)
 
+### Requirements 
 
-Requirements 
+ArcLib must be able to perform the following tasks:
 
-The ArcCam library must be able to perform the following tasks:
+1. Upload DSP files to the controller.  These consist of:
+   - DSP for the timing board
+   - DSP for the utility board
+   - DSP for the PCI board
 
-I.	a) Load timing DSP
-b) Load utility DSP
-c) Load PCI DSP
-      b) Report controller state during each of the above 3 steps. (Need to revisit the 'RCC' command
-      since it did not work as expected when I tried using it.)
+   ArcLib will report controller state during each of the above 3 steps.  
+   Note: We will need to revisit the 'RCC' command since it did not work as expected in initial testing.
 
-II.	a) Set binning up to 4x4. For binning values greater than 4x4 in addition to rectangular binning see
-       the “Future  Enhancements” section below.
-      b) Report binning status
-III.	a) Set amplifier
-      b) Report amplifier status
-IV.	a) Set 1 or more subframes
-      b) Report subframe status
-V.	a) Set exposure time
-      b) Report exposure time
-VI.	a) Control camera shutter
-      b) Report shutter status (Is shutter opened or closed? Is there hardware feedback to know this for sure?)
+2. Binning
+   - Set rectangular binning up to 4x4.
+     Note: We can already do rectangular binning up to 4 columns x arbitrary rows.
+   - Report binning status
+   
+3. Amplifiers
+   - Set amplifier
+   - Report amplifier status
+   
+4. Subframes
+   - Set 1 or more subframes
+   - Report subframe status
+   
+5. Exposure Time
+   - Set exposure time
+   - Report exposure time
+   
+6. Camera Shutter
+   - Control camera shutter
+   - Report shutter status (Is shutter opened or closed? Is there hardware feedback to know this for sure?)
+   
+   Note: <font color="green">Ted: No there isn’t.  It’s even worse; different shutter controllers use different
+   logic levels for open and closed states.
+
+   We need to be able to specify whether a given image is an object frame with light on it, a dark frame
+   with such-and-such exposure time, or a bias frame with the smallest possible exposure time and no light.
+   At this level we the idea of a flat frame doesn’t make sense – it is just a normal frame where the shutter
+   opens and you expose to light.  The fact that it’s a flat is a detail that needs to be dealt with at a
+   higher software level.</font>
+
 
 I think the camera shutter is controlled by the DSP code when a SEX command is sent so we may not have
 to have a requirement for this.  But, talk to Ted about it.  Can we do independent shutter control? Also,
