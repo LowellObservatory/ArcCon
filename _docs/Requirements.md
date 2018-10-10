@@ -15,7 +15,7 @@ Processor (DSP) commands will be included in the appendix to be used as a guidel
 
 #### Intended Audience  
 ArcLib will be used by system applications, in particular the Lowell Observatory Camera Utility System (LOCUS).
-As such the intended audience will be application developers interested in controlling CCDs using ARC controllers.
+As such, the intended audience will be application developers interested in controlling CCDs using ARC controllers.
 
 #### History  
 The desire to have a very narrowly focused set of tools for this purpose is born out of the experience with the
