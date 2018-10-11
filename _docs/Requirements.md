@@ -200,9 +200,9 @@ ArcLib must be able to perform the following tasks:
 
 4. Global Resets - For use with infrared instruments
 
-Keeps NIR arrays from saturating due to thermal emissions from itself or anything
-around it by destructively reading out the array when not actively taking an exposure.
-Essential since most NIR cameras don't have shutters, either.
+   Keeps NIR arrays from saturating due to thermal emissions from itself or anything
+   around it by destructively reading out the array when not actively taking an exposure.
+   Essential since most NIR cameras don't have shutters, either.
 
 
 
