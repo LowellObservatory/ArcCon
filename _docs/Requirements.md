@@ -179,6 +179,12 @@ ArcLib must be able to perform the following tasks:
 
 ```diff
 +  Ted: Doing this in PCI card memory or computer memory are both approaches to consider.
+
++  Ryan: There's also the consideration of what to save in terms of the intermediate 
++  non-destructive reads; I know that the H2RG used in the SpeX upgrade stores 
++  every NDR up the ramp (the first being the pedestal) so the end user can use whatever 
++  Fowler number their heart desires.  Might be interesting to see what (if anything) 
++  RIMAS is doing with their arrays since they're driven by ARC controllers.
 ```
 
 
