@@ -181,13 +181,28 @@ ArcLib must be able to perform the following tasks:
 +  Ted: Doing this in PCI card memory or computer memory are both approaches to consider.
 
 +  Ryan: There's also the consideration of what to save in terms of the intermediate 
-+  non-destructive reads; I know that the H2RG used in the SpeX upgrade stores 
-+  every NDR up the ramp (the first being the pedestal) so the end user can use whatever 
-+  Fowler number their heart desires.  Might be interesting to see what (if anything) 
-+  RIMAS is doing with their arrays since they're driven by ARC controllers.
++  non-destructive reads; I know that the H2RG used in the SpeX upgrade can store 
++  every NDR up the ramp (the first being the pedestal) as an engineering mode, 
++  making it possible to then self-calculate whatever Fowler number your heart desires.  
++  For science observations, SpeX stores pedestal minus signal, pedestal, and signal, 
++  where signal is composed of NDR*coadds computed elsewhere, probably in hardware.
++  Might be interesting to see what RIMAS is doing since they've got 2 H2RGs and ARC 
++  controllers.
++
++  Related to this, there's probably upper/lower ranges of NDRs to actually support.
++  10 NDRs gives you a sqrt(10) ~= 3 reduction in read noise, which is pretty sweet for a
++  sensitive spectrograph.  But that makes your minimum exposure time
++  (readOutTime*NDR) longer which might be too long and actually saturate the array 
++  given the background of the telescope/system.  It's a parameter depending on the actual 
++  site/telescope/instrument combination that can be maanged by higher level control
++  software if the actual DSP limit is long enough.
 ```
 
+4. Global Resets - For use with infrared instruments
 
+Keeps NIR arrays from saturating due to thermal emissions from itself or anything
+around it by destructively reading out the array when not actively taking an exposure.
+Essential since most NIR cameras don't have shutters, either.
 
 
 
