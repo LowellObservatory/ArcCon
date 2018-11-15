@@ -135,7 +135,13 @@ ArcLib must be able to perform the following tasks:
 
 Appendix
 ```diff
-+    Ted to review the NIHTS DSP.  How different is this command table?
++    Ted: The NIHTS command table is shorter than this one.  It includes:
++    SBV, SMX, RCC, DON, PON, POF, SET, SEX, and AEX, as well as the last set at COM_TBL.
++    In addition it has RET (Read_exposure_time), SNR (set_num_reads), and SBN (set_bias_number)
++    I don't think the NIHTS LOIS uses any of these three.  IR detectors don't have shutters and
++    can't be binned so commands related to them are meaningless.  NIHTS also doesn't support
++    subframes so all of the functions related to them are missing.
++    The LMI and DeVeny tables are basically the same as this table.
 ```
 
 ```	DC	'IDL',IDL  		; Put CCD in IDLE mode    
