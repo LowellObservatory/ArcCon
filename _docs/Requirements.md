@@ -106,31 +106,46 @@ ArcLib must be able to perform the following tasks:
 1. Abort an exposure in progress 
    - Support aborting only during integration, not during readout
      - Depend on error checking at the application level to prevent crazy readout sizes
-   - Abort exposure, read out, and save data
-   - Abort exposure, skip readout, and don't save data.
+   - Stop exposure (read out and save data)
+   - Abort exposure (skip readout and don't save data)
 
 2. Change the exposure time on the fly (i.e. update exposure time during exposure)
-   - If exposure time requested is less than exposure already made, abort, read out, and save data.
+   - If exposure time requested is less than exposure already made, stop, read out, and save data.
 
 3. Pause an exposure and then resume it
 
 ```diff
-+    Discuss with Tom.  Pause/resume is fraught.  What about multiple pause/resumes?  What airmass goes
-+    in the header?  What's the exposure start time?  Won't abort-and-save together with a subsequent 
-+    exposure accomplish the same thing?
++    We discussed this with Tom.  The use cases are: 1) an object goes off the slit, or 2) a passing
++    cloud causes trouble.  He suggests limiting this to only one pause in an exposure.  This simplifies 
++    things but there's still uncertainty in the midtime of the exposure.  For the spectroscopic applications
++    he is thinking of this shouldn't be a problem.  If it is a problem for another application it just
++    shouldn't be used.  As we discussed this it turned out that this won't be useful for the DeVeny because
++    its shutter is between the slit and the slit viewing camera.  In this case the only viable way to
++    deal with an object that has gone off the slit is to stop the exposure (read out and save), re-acquire
++    the object, and start another exposure.  As a result this is a lower priority than stop/abort and
++    changing exposure time on the fly.
 ```
 
 4. Fowler Sampling – For use with infrared instruments.  (NDR = non-destructive read)
+   - Basic operation is to reset/NDR, NDR, NDR, ..., integrate, NDR, NDR, NDR, ... idle (continuous reset)
+   - Define the number of samples to make before and after the (relatively much longer) integration time.
+   - Massaging of the Fowler sampled images occurs at the level above ArcLib.  This involves pairwise
+     subtractions of the corresponding readouts after and before the integration and averaging them.
+
+5. Sampling up the ramp – For use with infrared instruments.  (NDR = non-destructive read)
    - Basic operation is to reset/NDR, integrate, NDR, ..., integrate, NDR, idle (continuous reset)
    - Define the number of samples to make up the ramp
    - Define the interval between samples
-   - Massaging of the Fowler sampled images occurs at the level above ArcLib
+   - Massaging of the Fowler sampled images occurs at the level above ArcLib.  In principle this could
+     be fancy - measure the slope of the ramp for every pixel by leaving out saturated samples so it
+     could extend the dynamic range of the image.  In practice this is not done, but it could be.
 
 ```diff
 +  Ted: Doing this in the computer shouldn't involve any compromise since the array read rate is
 +  slower than the fiber data transfer rate and the computer is fast.  The problem of what to do
-+  with the Fowler samples is deferred to a different requirements document.
-+  This solution presupposes that we aren't working longer than K band.
++  with the Fowler samples and samples up the ramp is deferred to a different requirements document.
++  This solution presupposes that we aren't working longer than K band.  At high background levels
++  this becomes a much more difficult problem.
 ```
 
 Appendix
