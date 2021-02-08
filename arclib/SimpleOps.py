@@ -10,8 +10,9 @@
 
 from __future__ import division, print_function, absolute_import
 
-from .ArcDSPCommands import ARC_command_list
 import fcntl
+
+from .ArcDSPCommands import ARC_command_list
 
 
 class SimpleOps(object):
@@ -51,10 +52,9 @@ class SimpleOps(object):
             self.parent.writeToConsole(self.parent.name +
                                        " is doing a 'power_on' command.",
                                        "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                po["board_num"],
-                po["command"],
-                po["command_type"])
+            rsp = self.parent.utilities.ioctlCommand(po["board_num"],
+                                                     po["command"],
+                                                     po["command_type"])
             self.parent.utilities.print_text_response(rsp)
         return()
 

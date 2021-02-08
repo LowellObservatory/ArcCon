@@ -71,7 +71,6 @@ SFD = 0x534644  # Start some kind of Exposure
 SIP = 0x534950  # Set Image Parameters
 SRC = 0x535243  # fSet Image Dimensions
 
-
 #       Memory Location Id Constants
 #               R       (Bit 20)  ROM
 #               P       (Bit 21)  DSP program memory space
