@@ -1,14 +1,16 @@
+# -*- coding: utf-8 -*-
+#
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+#  Created on 8 Feb 2021
+#
+#  @author: dlytle, rhamilton
 
-''' ArcCam.py '''
-
-__author__     = "Dyer Lytle"
-__version__    = "1.0"
-__lastupdate__ = "March 15, 2018"
-
-#import xml.etree.ElementTree
-from SimpleOps import SimpleOps
-from SystemOps import SystemOps
-from Utilities import Utilities
+from .SimpleOps import SimpleOps
+from .SystemOps import SystemOps
+from .Utilities import Utilities
 
 import xml.etree.ElementTree as ET
 
@@ -35,7 +37,7 @@ class ArcCam(object):
         self.file_descriptor_open = False
         self.printname = "'" + name + "'"
         message = ("'" + name + "' " + "created with parameters " +
-                  str(device) + " and " + str(config_file))
+                   str(device) + " and " + str(config_file))
 
         self.writeToConsole(message, "normal")
 
@@ -57,14 +59,13 @@ class ArcCam(object):
         else:
             print(message)
 
-
     def setup(self):
         self.system.camera_open()
 
     def close(self):
         self.system.camera_close()
 
-    def load_timing_dsp (self, dsp_file):
+    def load_timing_dsp(self, dsp_file):
         # Read through the timing DSP binhex file line by line until we find
         # the _END. When we find a data block, send to processDSPData
         # for ingest.
@@ -81,26 +82,33 @@ class ArcCam(object):
 
     def processDSPData(self, fp, memType, memAddress):
         x = 0
-        addr = int(memAddress, base=16)   # Convert start address to int.
-        last_pos = fp.tell()              # Keep track of where we are in file.
-        line = fp.readline()
-        while line != '':                 # While not at EOF yet.
-            if ("_" in line):
-                fp.seek(last_pos)         # if we find "_" back up one line
-                return()                  # and return.
-            else:
-                items = line.split()      # Otherwise, split line up by spaces.
-                for item in items:
-                    haddr = eval(hex(addr + x))  # Calculate the address to use.
-                    iitem = int(item, base=16)   # Convert the data to int.
-                    self.simple.write_memory(2, memType, haddr, iitem)  # memwrt
-                    x += 1                       # This increments mem location.
-            last_pos = fp.tell()     # Keep track of where we are in file.
-            line = fp.readline()     # Read the next line.
+        # Convert start address to int.
+        addr = int(memAddress, base=16)
 
+        # Keep track of where we are in file.
+        last_pos = fp.tell()
+        line = fp.readline()
+        while line != '':
+            if ("_" in line):
+                # if we find "_" back up one line and return
+                fp.seek(last_pos)
+                return()
+            else:
+                # Otherwise, split line up by spaces
+                items = line.split()
+                for item in items:
+                    # Calculate the address to use
+                    haddr = eval(hex(addr + x))
+                    # Convert the data to int.
+                    iitem = int(item, base=16)
+                    # Actually write to memory (memwrt)
+                    self.simple.write_memory(2, memType, haddr, iitem)
+
+                    x += 1
+            # Keep track of where we are in file and read next line
+            last_pos = fp.tell()
+            line = fp.readline()
 
     def status(self):
         rsp = self.simple.status()
         return(rsp)
-
-
