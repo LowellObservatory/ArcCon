@@ -36,10 +36,9 @@ class SimpleOps(object):
             self.parent.writeToConsole("device"
                                        " is doing a 'power_off' command.",
                                        "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                po["board_num"],
-                po["command"],
-                po["command_type"])
+            rsp = self.parent.utilities.ioctlCommand(po["board_num"],
+                                                     po["command"],
+                                                     po["command_type"])
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -67,10 +66,9 @@ class SimpleOps(object):
             self.parent.writeToConsole(self.parent.name +
                                        " is doing a 'start_idle' command.",
                                        "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                si["board_num"],
-                si["command"],
-                si["command_type"])
+            rsp = self.parent.utilities.ioctlCommand(si["board_num"],
+                                                     si["command"],
+                                                     si["command_type"])
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -83,10 +81,9 @@ class SimpleOps(object):
             self.parent.writeToConsole(self.parent.name +
                                        " is doing a 'stop_idle' command.",
                                        "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                si["board_num"],
-                si["command"],
-                si["command_type"])
+            rsp = self.parent.utilities.ioctlCommand(si["board_num"],
+                                                     si["command"],
+                                                     si["command_type"])
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -99,12 +96,10 @@ class SimpleOps(object):
             self.parent.writeToConsole(self.parent.name +
                                        " is doing a 'set_row_col' command.",
                                        "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                src["board_num"],
-                src["command"],
-                src["command_type"],
-                row,
-                col)
+            rsp = self.parent.utilities.ioctlCommand(src["board_num"],
+                                                     src["command"],
+                                                     src["command_type"],
+                                                     row, col)
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -118,13 +113,10 @@ class SimpleOps(object):
             self.parent.writeToConsole(
                 self.parent.name + " is doing a 'set_subframe_size' command.",
                 "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                sss["board_num"],
-                sss["command"],
-                sss["command_type"],
-                nbias,
-                colsize,
-                rowsize)
+            rsp = self.parent.utilities.ioctlCommand(sss["board_num"],
+                                                     sss["command"],
+                                                     sss["command_type"],
+                                                     nbias, colsize, rowsize)
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -138,12 +130,10 @@ class SimpleOps(object):
             self.parent.writeToConsole(
                 self.parent.name +
                 " is doing a 'set_subframe_position' command.", "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                ssp["board_num"],
-                ssp["command"],
-                ssp["command_type"],
-                y,
-                x)
+            rsp = self.parent.utilities.ioctlCommand(ssp["board_num"],
+                                                     ssp["command"],
+                                                     ssp["command_type"],
+                                                     y, x)
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -157,14 +147,13 @@ class SimpleOps(object):
             self.parent.writeToConsole(
                 self.parent.name +
                 " is doing a 'set_image_parameters' command.", "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                sip["board_num"],
-                sip["command"],
-                sip["command_type"],
-                frame_type,
-                iframes,
-                srows,
-                interval)
+            rsp = self.parent.utilities.ioctlCommand(sip["board_num"],
+                                                     sip["command"],
+                                                     sip["command_type"],
+                                                     frame_type,
+                                                     iframes,
+                                                     srows,
+                                                     interval)
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -178,11 +167,10 @@ class SimpleOps(object):
             self.parent.writeToConsole(
                 self.parent.name +
                 " is doing a 'set_exposure_time' command.", "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                sete["board_num"],
-                sete["command"],
-                sete["command_type"],
-                exp_time)
+            rsp = self.parent.utilities.ioctlCommand(sete["board_num"],
+                                                     sete["command"],
+                                                     sete["command_type"],
+                                                     exp_time)
             self.parent.camera_exposure_time = exp_time
             self.parent.utilities.print_text_response(rsp)
         return()
@@ -197,10 +185,9 @@ class SimpleOps(object):
             self.parent.writeToConsole(
                 self.parent.name +
                 " is doing a 'start_exposure' command.", "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                sex["board_num"],
-                sex["command"],
-                sex["command_type"])
+            rsp = self.parent.utilities.ioctlCommand(sex["board_num"],
+                                                     sex["command"],
+                                                     sex["command_type"])
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -214,10 +201,9 @@ class SimpleOps(object):
             self.parent.writeToConsole(
                 self.parent.name +
                 " is doing a 'clear_subframe' command.", "arccam")
-            rsp = self.parent.utilities.ioctlCommand(
-                csb["board_num"],
-                csb["command"],
-                csb["command_type"])
+            rsp = self.parent.utilities.ioctlCommand(csb["board_num"],
+                                                     csb["command"],
+                                                     csb["command_type"])
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -244,11 +230,10 @@ class SimpleOps(object):
             dsp_amp = output_types[amp]     # Get the hex code for the amp.
 
             # Send the set amplifier command to the device.
-            rsp = self.parent.utilities.ioctlCommand(
-                sa["board_num"],
-                sa["command"],
-                sa["command_type"],
-                dsp_amp)
+            rsp = self.parent.utilities.ioctlCommand(sa["board_num"],
+                                                     sa["command"],
+                                                     sa["command_type"],
+                                                     dsp_amp)
             self.parent.utilities.print_text_response(rsp)
         return()
 
@@ -276,11 +261,10 @@ class SimpleOps(object):
             dsp_mem_type = mem_types[mem_type]  # Look up hex for memory type.
 
             # Send the read memory command off to the device.
-            rsp = self.parent.utilities.ioctlCommand(
-                board_num,
-                rm["command"],
-                rm["command_type"],
-                (dsp_mem_type | dspaddr))
+            rsp = self.parent.utilities.ioctlCommand(board_num,
+                                                     rm["command"],
+                                                     rm["command_type"],
+                                                     (dsp_mem_type | dspaddr))
 
             # print memory vals
             self.parent.utilities.print_hex_response(rsp)
@@ -312,12 +296,11 @@ class SimpleOps(object):
             dsp_mem_type = mem_types[mem_type]   # Get hex code for memory type
 
             # Sent the write memory command off to the device.
-            rsp = self.parent.utilities.ioctlCommand(
-                board_num,
-                wm["command"],
-                wm["command_type"],
-                (dsp_mem_type | dspaddr),
-                data)
+            rsp = self.parent.utilities.ioctlCommand(board_num,
+                                                     wm["command"],
+                                                     wm["command_type"],
+                                                     (dsp_mem_type | dspaddr),
+                                                     data)
 
             #self.parent.utilities.print_hex_response(rsp)
         return()
@@ -354,5 +337,3 @@ class SimpleOps(object):
         mycmd = mycmdint.to_bytes(4, byteorder='little')
         rsp = fcntl.ioctl(self.parent.camera_file_descriptor, 0x12, mycmd)
         self.parent.utilities.print_hex_response(rsp)
-
-
