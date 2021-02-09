@@ -12,15 +12,17 @@ from __future__ import division, print_function, absolute_import
 
 import fcntl
 
+import Utilities as dsputils
 from .ArcDSPCommands import ARC_command_list
 
 
+
 def commander(filedesc, arcdspcmd, *args):
-    rsp = utilities.ioctlCommand(filedesc,
-                                 arcdspcmd.board,
-                                 arcdspcmd.commandloc,
-                                 arcdspcmd.cmdtype, *args)
-    utilities.print_text_response(rsp)
+    rsp = dsputils.ioctlCommand(filedesc,
+                                arcdspcmd.board,
+                                arcdspcmd.commandloc,
+                                arcdspcmd.cmdtype, *args)
+    dsputils.print_text_response(rsp)
 
 
 class SimpleOps(object):

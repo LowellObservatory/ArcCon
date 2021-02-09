@@ -34,12 +34,12 @@ def ioctlCommand(file_descriptor, board_num, command, command_type, *args):
         + cmd_int[4].to_bytes(4, byteorder='little') \
         + cmd_int[5].to_bytes(4, byteorder='little')
 
-    response = fcntl.ioctl(camera_file_descriptor, command_type, cmd)
+    response = fcntl.ioctl(file_descriptor, command_type, cmd)
 
     return(response)
 
 
-def print_text_response(self, rsp):
+def print_text_response(rsp):
     cmd_sent = rsp[4:7].decode("utf-8")
     cmd_response = rsp[0:3].decode("utf-8")
     cmd_sent = cmd_sent[::-1]
@@ -49,7 +49,7 @@ def print_text_response(self, rsp):
                                ' reply: ' + str(cmd_response), "arccam")
 
 
-def print_hex_response(self, rsp):
+def print_hex_response(rsp):
     cmd_sent = rsp[4:7].decode("utf-8")
     cmd_response = rsp[0:3]
     cmd_sent = cmd_sent[::-1]
