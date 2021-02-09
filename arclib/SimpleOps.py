@@ -15,6 +15,14 @@ import fcntl
 from .ArcDSPCommands import ARC_command_list
 
 
+def commander(filedesc, arcdspcmd, *args):
+    rsp = utilities.ioctlCommand(filedesc,
+                                 arcdspcmd.board,
+                                 arcdspcmd.commandloc,
+                                 arcdspcmd.cmdtype, *args)
+    utilities.print_text_response(rsp)
+
+
 class SimpleOps(object):
     '''
     Simple Camera Operations
@@ -33,13 +41,12 @@ class SimpleOps(object):
             self.parent.writeToConsole("power_off: Camera not Open", "error")
         else:
             #p = self.parent
-            self.parent.writeToConsole("device"
+            self.parent.writeToConsole("device" +
                                        " is doing a 'power_off' command.",
                                        "arccam")
-            rsp = self.parent.utilities.ioctlCommand(po["board_num"],
-                                                     po["command"],
-                                                     po["command_type"])
-            self.parent.utilities.print_text_response(rsp)
+
+            rsp = commander(self.parent.file_descriptor,
+                            ARC_command_list['power_off'])
         return()
 
     def power_on(self):
