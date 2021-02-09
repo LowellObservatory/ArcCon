@@ -10,13 +10,13 @@
 
 from __future__ import division, print_function, absolute_import
 
-from arclib.ArcCam import ArcCam
+from arclib.ARCInterface import ARCInterface
 import time
 
 device = "/dev/Arc64PCI0"
 config_file = "config/CCD57.xml"
 
-device = ArcCam("CCD57", None, device, config_file)
+device = ARCInterface("CCD57", device, config_file)
 
 device.setup()  # Open file descriptor
 

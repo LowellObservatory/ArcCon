@@ -16,7 +16,7 @@ import ARCGenIII as G3
 class ARCDSPCmd(object):
     # Just make it required to set each param ahead of time
     def __init__(self, goodname, prefix, nargs,
-                 cmdtype=None, cmdloc=None, board=None, retval=None):
+                 cmdtype=None, cmdloc=None, board=0, retval=None):
         # These have to be specified for each command
         self.name = goodname
         self.call_prefix = prefix

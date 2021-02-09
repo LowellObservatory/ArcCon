@@ -18,7 +18,8 @@ import numpy as np
 def ioctlCommand(file_descriptor, board_num, command, command_type, *args):
     num_args = len(args)
 
-    # Combine everything so it can be passed
+    # Combine everything so it can be passed.  Should make this faster
+    #   (but less readable) and just keep this as a comment/reminder
     cmd_int = [0] * 6
     cmd_int[0] = ((board_num << 8) | num_args + 2)
     cmd_int[1] = command
@@ -39,24 +40,18 @@ def ioctlCommand(file_descriptor, board_num, command, command_type, *args):
     return(response)
 
 
-def print_text_response(rsp):
-    cmd_sent = rsp[4:7].decode("utf-8")
-    cmd_response = rsp[0:3].decode("utf-8")
+def responseDecode(rsp, fmt='txt'):
+    if fmt.lower() == 'txt:':
+        cmd_sent = rsp[4:7].decode("utf-8")
+        cmd_response = rsp[0:3].decode("utf-8")
+    elif fmt.lower() == 'hex':
+        cmd_sent = rsp[4:7]
+        cmd_response = rsp[0:3]
+
     cmd_sent = cmd_sent[::-1]
     cmd_response = cmd_response[::-1]
 
-    self.parent.writeToConsole('cmd: ' + str(cmd_sent) +
-                               ' reply: ' + str(cmd_response), "arccam")
-
-
-def print_hex_response(rsp):
-    cmd_sent = rsp[4:7].decode("utf-8")
-    cmd_response = rsp[0:3]
-    cmd_sent = cmd_sent[::-1]
-    cmd_response = cmd_response[::-1]
-
-    self.parent.writeToConsole('cmd: ' + str(cmd_sent) +
-                               " response: " + str(cmd_response), "arccam")
+    return "cmd: " + str(cmd_sent) + " reply: " + str(cmd_response), "arccam"
 
 
 def return_image(mymap, x, y, offset):

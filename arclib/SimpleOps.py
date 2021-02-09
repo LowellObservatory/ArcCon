@@ -16,14 +16,6 @@ import Utilities as dsputils
 from .ArcDSPCommands import ARC_command_list
 
 
-def commander(filedesc, arcdspcmd, *args):
-    rsp = dsputils.ioctlCommand(filedesc,
-                                arcdspcmd.board,
-                                arcdspcmd.commandloc,
-                                arcdspcmd.cmdtype, *args)
-    dsputils.print_text_response(rsp)
-
-
 class SimpleOps(object):
     '''
     Simple Camera Operations
@@ -36,19 +28,20 @@ class SimpleOps(object):
         self.parent = parent
 
     def power_off(self):
-        # Send the power on command to the device
-        po = ARC_command_list["power_off"]
+        cmd = ARC_command_list['power_off']
+
         if (not self.parent.file_descriptor_open):
             self.parent.writeToConsole("power_off: Camera not Open", "error")
+            self.rsp = "error"
         else:
-            #p = self.parent
             self.parent.writeToConsole("device" +
                                        " is doing a 'power_off' command.",
                                        "arccam")
 
-            rsp = commander(self.parent.file_descriptor,
-                            ARC_command_list['power_off'])
-        return()
+            rsp = self.parent.system.sendCommand(self.parent.file_descriptor,
+                                                 cmd)
+
+        self.rsp = rsp
 
     def power_on(self):
         # Send the power on command to the device

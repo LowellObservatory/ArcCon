@@ -11,9 +11,11 @@
 from __future__ import division, print_function, absolute_import
 
 import os
-import mmap
 import sys
+import mmap
 import time
+
+import Utilities as dsputils
 
 
 class SystemOps(object):
@@ -97,3 +99,23 @@ class SystemOps(object):
 
     def sleep(self, sleeptime):
         time.sleep(sleeptime)
+
+    def sendCommand(self, arcdspcmd, *args, debug=True):
+        """
+        Note that this is really just a nice, thin candy shell around
+        dsputils.ioctlCommand which sends a command to the specified ARC PCI
+        card in the host machine.
+
+        This hopefully makes it at least a little easier to deal with in the
+        future and we need to point towards some other interface or whatever.
+        """
+        rsp = dsputils.ioctlCommand(self.parent.camera_file_descriptor,
+                                    arcdspcmd.board,
+                                    arcdspcmd.commandloc,
+                                    arcdspcmd.cmdtype, *args)
+
+        if debug is True:
+            # ADD LOGGER HERE
+            print(dsputils.responseDecode(rsp))
+
+        return rsp
