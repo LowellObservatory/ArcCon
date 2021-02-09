@@ -20,8 +20,7 @@ import Utilities as dsputils
 
 class SystemOps(object):
     '''
-    The routines in this file are part of ArcCamLib and are operating system
-    commands as opposed to controller commands.
+    These are operating system commands as opposed to controller commands
     '''
 
     def __init__(self, parent, params):
