@@ -16,7 +16,6 @@ import Utilities as dsputils
 from .ArcDSPCommands import ARC_command_list
 
 
-
 def commander(filedesc, arcdspcmd, *args):
     rsp = dsputils.ioctlCommand(filedesc,
                                 arcdspcmd.board,
