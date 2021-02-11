@@ -131,14 +131,3 @@ SSV = 0x535356  # Start Series Run
 SFD = 0x534644  # Start some kind of Exposure
 SIP = 0x534950  # Set Image Parameters
 SRC = 0x535243  # fSet Image Dimensions
-
-#       Memory Location Id Constants
-#               R       (Bit 20)  ROM
-#               P       (Bit 21)  DSP program memory space
-#               X       (Bit 22)  DSP X memory space
-#               Y       (Bit 23)  DSP Y memory space
-
-DSPMEM_P = 0x100000
-DSPMEM_X = 0x200000
-DSPMEM_Y = 0x400000
-DSPMEM_R = 0x800000
